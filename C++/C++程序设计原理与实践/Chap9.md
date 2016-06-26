@@ -49,6 +49,39 @@
     	Week w = Mon;  int a = 123; int b = Mon; //ok convert enum to int
     	Week w = Week(123); // OK 编译器此时相信程序员。
 
-> 6.4 枚举类型中的 Mon， Tue， 。。。等元素的作用域和Week相同。为了避免和其他变量命名冲突，可以使用Week::Mon的形式避免。
+> 6.4 枚举类型中的 Mon， Tue， 。。。等元素的作用域和Week相同。为了避免和其他变量命名冲突，使用枚举类（C++ 11标准）。 enum class Week {Mon, Tue ...}，那么 可以使用为
+Week a = Week::Mon;
+
+7. 运算符重载
+
+> 7.1 只能对C++ 已有的运算符进行重载且不能修改原运算符的元数目。
+	比如可以对 ＋，＊，＋＋，<< 运算符进行重载，但是不能对 ＋＊， ／＊等进行重载，因为C＋＋标准中没有这些运算符。
+	＋ 重载后依旧只能时二元运算，而不能时一元运算。
+
+> 7.2 重载的运算符必须作用于至少一个用户自定义类型的运算对象。
+
+> 7.3 看懂例子
+
+
+```
+enum Week { Mon =1, Tue, Wen, Thu, Fri, Sat};
+string week_names[] = {"Mon", "Tue", "Wen", "Thu", "Fri", "Sat"};
+ostream& operator<< (ostream& os, Week w)
+{
+    return os << week_names[w] << '\n';
+}
+
+int main(int argc, const char * argv[]) {
    
+
+    Week w(Mon);
+    
+    cout << w;
+    
+    return 0;
+}
+```
+
+> 7.4 重载运算符的一般性原则：除非能够确定运算符能够大大改善代码，否则不要为你的类型定义运算符。
+
 
