@@ -52,7 +52,25 @@
 > 6.4 枚举类型中的 Mon， Tue， 。。。等元素的作用域和Week相同。为了避免和其他变量命名冲突，使用枚举类（C++ 11标准）。 enum class Week {Mon, Tue ...}，那么 可以使用为
 Week a = Week::Mon;
 
-7. 运算符重载
+> 6.5 类中枚举的使用举例
+
+```
+****class Date {
+    int year;
+    int month;
+    int day;
+public:
+    enum Week {Mon = 1, Tue, Wen, Thu, Fri, Sat};
+    void show();
+    Date(int y, int m, int d);
+};
+//...
+Date d1(2006, _Date::Sat_, 1);
+```
+
+
+7.运算符重载
+
 
 > 7.1 只能对C++ 已有的运算符进行重载且不能修改原运算符的元数目。
 	比如可以对 ＋，＊，＋＋，<< 运算符进行重载，但是不能对 ＋＊， ／＊等进行重载，因为C＋＋标准中没有这些运算符。
