@@ -103,3 +103,53 @@ int main(int argc, const char * argv[]) {
 > 7.4 重载运算符的一般性原则：除非能够确定运算符能够大大改善代码，否则不要为你的类型定义运算符。
 
 
+8.默认构造函数
+> 设计类时一般都保证有默认构造函数。比如对于类Date
+
+    class Date {
+    public:
+    enum week {Mon = 1, Tue =2};
+    Date(int y, int m, int d);
+    private:
+    int year;
+    int month;
+    int day;
+    week w;
+    };
+
+我们 定义一个变量 Date dd; 对于dd我们无法掌握内部数据是否合法（Date.w）
+
+9.const函数成员
+
+    class Student {
+    private:
+    int age;
+    int sex;
+    
+    public:
+    Student(int, int);
+    int add_age();
+    int show_info()const;
+    };
+    
+    Student::Student(int a = 1, int s = 2):age(a), sex(s){};
+    //正确定义,
+    int Student::add_age(){
+    age = age + 1;
+    return age;
+    }
+    
+    //错误定义
+    int Student::show_info() const
+    {
+    cout << "age:" << age << "sex:" << sex << '\n';
+    age = age + 1; //错误：不可以修改类数据成员。
+    //不小心添加，因为有const,在编译时可及时发现错误
+    return age;
+    }
+   
+![QQ截图20160629214610.png](C:/Users/gz2047/Desktop/QQ截图20160629214610.png "")
+
+
+
+
