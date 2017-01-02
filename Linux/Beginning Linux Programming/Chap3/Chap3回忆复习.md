@@ -66,12 +66,12 @@
     	int lstat(const char *paht, struct stat *buf)
 
 2. stat 成员结构
-- 	st_mode 			文件权限和文件类型信息
-- 	st_ino 				与该文件关联的inode
-- 	st_dev 				保存文件的设备
-- 	st_uid 				文件属主的UID号
-- 	st_gid 				文件属主的GID号
-- 	st_atime 			文件上一次被访问的时间
+    	st_mode 			文件权限和文件类型信息
+    	st_ino 				与该文件关联的inode
+    	st_dev 				保存文件的设备
+    	st_uid 				文件属主的UID号
+    	st_gid 				文件属主的GID号
+    	st_atime 			文件上一次被访问的时间
 
 
 3. stat()和lstat()的区别就是：当文件是一个符号链接时，lstat返回的是符号链接本身的信息，stat返回的是该链接指向的文件的信息。
