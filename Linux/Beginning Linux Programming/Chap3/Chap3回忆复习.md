@@ -73,7 +73,6 @@
     	st_gid 				文件属主的GID号
     	st_atime 			文件上一次被访问的时间
 
-
 3. stat()和lstat()的区别就是：当文件是一个符号链接时，lstat返回的是符号链接本身的信息，stat返回的是该链接指向的文件的信息。
 4. stat.st_mode
 	（1）掩码：S_IFMT：文件类型，S_IRWXU：属主的读/写/执行权限，S_IRWXG：属组的读/写/执行权限，S_IRWXO:其他用户的读/写/执行权限。
