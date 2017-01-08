@@ -86,13 +86,49 @@
 
 ### 1.2.3 dup和dup2 ###
 
-1. 声明
+ 1. 声明
     
     	#include <unistd.h>
     	int dup(int fd)
     	int dup2(int old_fd, int new_fd)
-2. 返回
+ 2. 返回
 	成果：返回新的文件描述符，失败：-1
-3. 说明：
+ 3. 说明：
 	dup：返回新文件描述符一定是当前可用文件描述符中的最小整数。
 	dup2:如果new_fd已经打开，则先关闭。如果old_fd == new_fd，则dup2直接回new_fd，不去关闭new_fd
+	
+# 2. 标准I/O 库
+## 2.1 fopen    fclose
+### 2.1.1 fopen
+ 1. 声明：
+ 
+
+``` stylus
+#incluse <stdio.h>
+FILE *fopen(const char *filename, const char *mode)
+其中：mode 有 
+(1)只读： “r”
+(2)只写：“w”
+(3)追加写：“a”
+(4)读写：r+
+(5)截断写：“w+”
+(6)追加读写：“a+”
+补充：如果后面加了b，表示是二进制文件。UNIX把所有文件都看作二进制文件。
+```
+2. 注意：可用的文件流数量（返回值）是有限制的，一般是16，不能少于8。
+
+### 2.1.2 fclose
+#### 1. 声明：
+
+``` stylus
+	#include <stdio.h>
+	int fclose(FILE * stream);
+```
+
+#### 2. 作用
+
+``` stylus
+	写出尚未写入的文件，并关闭文件流 stream.
+```
+
+
